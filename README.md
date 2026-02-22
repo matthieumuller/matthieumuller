@@ -33,9 +33,9 @@ Tech stack: [Emacs](https://www.gnu.org/software/emacs/) [Lisp](https://en.wikip
 
 ## Where to find me?
 
- [GitHub](https://github.com/matthieumuller)  
- [GitLab](https://gitlab.com/matthieu_muller)
- [LinkedIn](https://linkedin.com/matthieumuller)
+- [GitHub](https://github.com/matthieumuller)
+- [GitLab](https://gitlab.com/matthieu_muller)
+- [LinkedIn](https://linkedin.com/matthieumuller)
 
 Freelancing:
 
