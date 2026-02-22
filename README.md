@@ -1,6 +1,4 @@
-# Hello there
-
-Welcome to my profile and portfolio!
+# Welcome to my profile and portfolio!
 
 ## Projects
 
@@ -8,8 +6,8 @@ Here are my most recent open source projects:
 
 ### [OpenStarAPD](https://gitlab.com/StaR-Elec/OpenStarApd) (Oct. 2025 - Mar. 2026)
 
-> Author  
 > Open-source professional project  
+> Role: Author  
 > Domain: Energy, Electricity  
 > Client: [Enedis](https://www.enedis.fr/)  
 
@@ -25,8 +23,8 @@ Tech stack:
 
 ### [Denote Paperless](https://github.com/matthieumuller/denote-paperless) (Feb. 2026)
 
-> Author  
 > Open-source personal project  
+> Role: Author  
 > Domain: Document management  
 
 An Emacs package to rename and manage your documents (bills, letters, taxes, etc.) based on a predictable file-naming scheme.
@@ -34,9 +32,12 @@ An Emacs package to rename and manage your documents (bills, letters, taxes, etc
 Tech stack: [Emacs](https://www.gnu.org/software/emacs/) [Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp)
 
 ## Where to find me?
-- [GitHub](https://github.com/matthieumuller)
-- [GitLab](https://gitlab.com/matthieu_muller)
-- [LinkedIn](https://linkedin.com/matthieumuller)
-- Freelancing:
-  - [Malt](https://malt.com/profile/matthieumuller1)
-  - [Collective.work](https://www.collective.work/search/fr?profileId=cm6fbet890tb967b02kjcc4pj)
+
+ [GitHub](https://github.com/matthieumuller)  
+ [GitLab](https://gitlab.com/matthieu_muller)
+ [LinkedIn](https://linkedin.com/matthieumuller)
+
+Freelancing:
+
+- [Malt](https://malt.com/profile/matthieumuller1)
+- [Collective.work](https://www.collective.work/search/fr?profileId=cm6fbet890tb967b02kjcc4pj)
