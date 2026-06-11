@@ -37,8 +37,3 @@ Tech stack: [Emacs](https://www.gnu.org/software/emacs/) [Lisp](https://en.wikip
 - [GitHub](https://github.com/matthieumuller)
 - [GitLab](https://gitlab.com/matthieu_muller)
 - [LinkedIn](https://linkedin.com/matthieumuller)
-
-Freelancing:
-
-- [Malt](https://malt.com/profile/matthieumuller1)
-- [Collective.work](https://www.collective.work/search/fr?profileId=cm6fbet890tb967b02kjcc4pj)
