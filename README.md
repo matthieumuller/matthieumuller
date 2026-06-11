@@ -21,7 +21,7 @@ Tech stack:
 - Tools: [uv](https://docs.astral.sh/uv/), [ruff](https://docs.astral.sh/ruff/), [pre-commit](https://pre-commit.com/), [pytest](https://pytest.org/), [DBML](https://dbml.dbdiagram.io/)
 - Datamodel: [INSPIRE](https://inspire.ec.europa.eu/)
 
-### [Denote Paperless](https://github.com/matthieumuller/denote-paperless) (Feb. 2026)
+### [Denote Paperless](https://codeberg.org/matthieumuller/denote-paperless) (Feb. 2026)
 
 > Open-source personal project  
 > Role: Author  
@@ -33,6 +33,7 @@ Tech stack: [Emacs](https://www.gnu.org/software/emacs/) [Lisp](https://en.wikip
 
 ## Where to find me?
 
+- [Codeberg](https://codeberg.org/matthieumuller)
 - [GitHub](https://github.com/matthieumuller)
 - [GitLab](https://gitlab.com/matthieu_muller)
 - [LinkedIn](https://linkedin.com/matthieumuller)
