@@ -4,22 +4,114 @@
 
 Here are my most recent open source projects:
 
-### [OpenStarAPD](https://gitlab.com/StaR-Elec/OpenStarApd) (Oct. 2025 - Mar. 2026)
+### [OpenStarAPD](https://gitlab.com/StaR-Elec/OpenStarApd) QGIS plugin (Oct. 2025 - Mar. 2026)
 
 > Open-source professional project  
 > Role: Author  
 > Domain: Energy, Electricity  
 > Client: [Enedis](https://www.enedis.fr/)  
 
-QGIS plugin for the biggest electricity distributor in France.  A tool for engineering and design offices to design electrical installations and deliver high quality and legally-compliant deliverables (PDF report and interoperable text files).
+#### Overview
 
-Tech stack:
+In october 2025, Enedis, the biggest electricity distributor in France, needed a tool for subcontractors and its own engineers.
 
-- Software: [Python](https://www.python.org/), [GDAL/OGR](https://gdal.org/), [QGIS API](https://qgis.org/pyqgis/master/)
-- Data: [SQLite](https://sqlite.org/), [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index), [GeoPackage](https://www.geopackage.org/)
-- DevOps: [Docker](https://www.docker.com/), [Gitlab CI/CD](https://docs.gitlab.com/ci/) 
-- Tools: [uv](https://docs.astral.sh/uv/), [ruff](https://docs.astral.sh/ruff/), [pre-commit](https://pre-commit.com/), [pytest](https://pytest.org/), [DBML](https://dbml.dbdiagram.io/)
-- Datamodel: [INSPIRE](https://inspire.ec.europa.eu/)
+This tool allows engineering and design offices to design electrical installations and to deliver high quality and legally-compliant deliverables, which are PDF reports and interoperable text files.
+
+Enedis' motivation to develop this tool was to bring more options and fairness in the choice of softwares available to its subcontractors.  Before this program existed, only one commercial actor remained in the landscape.
+
+#### Architecture
+
+The choice of technology for this project was obvious right at the beginning: Enedis teams were already using [QGIS](https://qgis.org/), and it offered a free and open source alternative to the subcontractors.
+
+Based on my initial assesment, the QGIS plugin foundation relies mainly on object-oriented programming. Picking the Model View Controller (MVC) software architecture made sense since I had to develop a data model, a front-end (user interface), and a back-end (plugin's logic):
+
+1.  Model: `data/`
+2.  View: `gui/`
+3.  Controller: `core/`
+
+This ensured a good separation of concerns, and healthy software growth.
+
+> See the [contributing guidelines](https://gitlab.com/StaR-Elec/OpenStarApd/-/blob/498a3cb963c1bb2615c4989c94f5f608b47beefb/CONTRIBUTING.md#architecture) to learn more about the architecure.
+
+#### Decisions and trade-offs
+
+##### Maximum portability
+
+One of the main challenges of the project was its required **portability**. Because of the large user base (hundreds of companies), it was impossible to take into account all possible user environments, subcontractors' infrastructure configuration (firewall, proxies, software installation restrictions, etc.), and other unforeseen constraints.
+
+In other words: the plugin must works on anyone's machine with an up-to-date QGIS installation.
+
+Thus, it lead to a very clear contraint: **no external dependencies**.
+
+1. For the code: **no external libraries**, everything must be built in-house with standard librairies, or rely on other QGIS plugins.
+2. For the database: **no complex architecture** (forget about MySQL, PostgreSQL, or SQL Server), use a file-based storage (such as [SQLite](https://sqlite.org/)).
+3. For the network: **avoid network interactions**, bundle necessary files with the plugin as much as possible.
+
+##### Data denormalization
+
+The data model is based on the [INSPIRE European Directive](https://inspire.ec.europa.eu/) logical data model which is **highly normalized**.
+
+One issue we were facing was that the user had to draw geospatial entities several times, for instance: a cable and its conduit.  We had to strike the **right balance between user experience and software engineering complexity**.
+
+This means that we had to **denormalize** the physical data model to improve the UX, for instance: merge the *Cable* and part of the *Conduit* tables to allow the user to define two entities in a single draw.
+
+##### Performance
+
+Performance-wise, some elements -could- lead to a very sluggish experience:
+
+- **Too many QGIS expressions** across the project. This was corrected by transforming expressions to static values dynamically within automated pipelines.
+- **SQL views** could become issues in the long run, a known optimization is to turn them to **materialized views**.
+- **Very large datasets**, this is something I wish I had tested more.
+
+#### Development practices
+
+##### Code quality
+
+To ensure good code quality, I used the current (as of 2025) **best practices for Python**:
+
+- [`pytest`](https://pytest.org/) for unit testing,
+- [`uv`](https://docs.astral.sh/uv/) for Python version and development dependencies (remember: no production dependencies allowed),
+- [`pre-commit`](https://pre-commit.com/) combined with [`ruff`](https://docs.astral.sh/ruff/) for linting and formatting,
+- [DevTools (QGIS plugin)](https://plugins.qgis.org/plugins/devtools/) for debugging within QGIS with VSCode.
+
+I also wrote detailed [contributing guidelines](https://gitlab.com/StaR-Elec/OpenStarApd/-/blob/498a3cb963c1bb2615c4989c94f5f608b47beefb/CONTRIBUTING.md) to ensure other developers hold the same code standards once I'm no longer on the project. This contains best practices such as [semantic versioning](https://semver.org/) or [git conventional commit](https://www.conventionalcommits.org/).
+
+##### Continuous integration & delivery (CI/CD)
+
+Because of the **uncertain roadmap** and **limited budget** to develop the tool, one of my main goal was to **put a MVP quickly in the hands of the user**.
+
+I used **[Gitlab CI/CD](https://docs.gitlab.com/ci/), [Docker](https://www.docker.com/), and Docker Compose** to:
+
+- Implement a robust CI/CD pipeline to **automate package build and distribution**,
+- Develop multiple pipelines to **automate routine development tasks** (e.g.: database file creation, QGIS project template creation, debugging)
+
+##### AI-assisted development
+
+At the end of September 2025, Anthropic released *Claude Code 2.0*. I started the projet in October 2025, but I didn't use it.
+
+Why? It's not that I didn't want, it's because **the code quality it was outputing was bad**.
+
+And now you're wondering: "Why was the code generated by Claude bad? I've only heard good things about it!"
+
+Well, as the saying goes in ML/AI: *Garbage in, Garbage out*.  Turns out **most QGIS plugins are rather poorly developed**: these are often seen as one-shot projects, probably developed by very smart people, but these people aren't software engineers. This results in :
+
+- Poor software architecture,
+- Poor documentation,
+- No PEP implementation (Python best practices),
+- No CI/CD implementation,
+- No testing,
+- No usage of debugging tools.
+
+I had to dig to find as few well-crafted projects.  Unfortunately, the AI is no magic, it is only a probabilistic tool in the end.
+
+I seldom used AI (Claude and Gemini), and **relied much more on documentation**, which were sometimes obscure websites of outdated APIs (hello PyQt 5).
+
+##### Geospatial APIs
+
+Interacting with geographic data requires specialized tools:
+
+- Software-wise: I used [GDAL/OGR](https://gdal.org/) and the [QGIS API](https://qgis.org/pyqgis/master/).
+- Data-wise, I used the [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index) (similar to PostGIS for PostgreSQL), and the [GeoPackage](https://www.geopackage.org/) extensions.
 
 ### [Denote Paperless](https://codeberg.org/matthieumuller/denote-paperless) (Feb. 2026)
 
