@@ -119,9 +119,32 @@ Interacting with geographic data requires specialized tools:
 > Role: Author  
 > Domain: Document management  
 
-An Emacs package to rename and manage your documents (bills, letters, taxes, etc.) based on a predictable file-naming scheme.
+#### Overview
 
-Tech stack: [Emacs](https://www.gnu.org/software/emacs/) [Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp)
+An Emacs package to **rename and manage your documents** (bills, letters, taxes, etc.) based on a predictable file-naming scheme.
+
+The workflow it implements is heavily **inspired from how [Paperless-ngx](https://docs.paperless-ngx.com/) operates**: giving each document a date, a type, a correspondent, a title, some keywords and (optionally) an archive serial number.
+
+This package is officially documented in the [Denote documentation](https://protesilaos.com/emacs/denote#h:2617d7ec-501d-4554-85ee-d4ca801e5bb2)
+
+To learn more, read the package’s documentation: https://codeberg.org/matthieumuller/denote-paperless
+
+#### Architecture
+
+Since the project is in Lisp, it is based solely on **functional programming**.
+
+#### Features
+
+- Prompt the user for the components of a file name
+- Rename a single or multiple files (in bulk or in sequence)
+- Assign each file a unique identifier
+- Auto-increment archive serial number when prompting the user
+- Hunt down duplicate fields
+
+#### Tech stack
+
+- [Emacs](https://www.gnu.org/software/emacs/) [Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp)
+- Based on the [Denote](https://github.com/protesilaos/denote) package
 
 ## Where to find me?
 
