@@ -1,17 +1,17 @@
-# Welcome to my profile and portfolio!
+# Welcome to my profile and portfolio! 👋
 
-## Projects
+# Projects
 
 Here are my most recent open source projects:
 
-### [OpenStarAPD](https://gitlab.com/StaR-Elec/OpenStarApd) QGIS plugin (Oct. 2025 - Mar. 2026)
+## [OpenStarAPD](https://gitlab.com/StaR-Elec/OpenStarApd) QGIS plugin (Oct. 2025 - Mar. 2026)
 
 > Open-source professional project  
 > Role: Author  
 > Domain: Energy, Electricity  
 > Client: [Enedis](https://www.enedis.fr/)  
 
-#### Overview
+### Overview
 
 In october 2025, Enedis, the biggest electricity distributor in France, needed a tool for subcontractors and its own engineers.
 
@@ -19,7 +19,7 @@ This tool allows engineering and design offices to design electrical installatio
 
 Enedis' motivation to develop this tool was to bring more options and fairness in the choice of softwares available to its subcontractors.  Before this program existed, only one commercial actor remained in the landscape.
 
-#### Architecture
+### Architecture
 
 The choice of technology for this project was obvious right at the beginning: Enedis teams were already using [QGIS](https://qgis.org/), and it offered a free and open source alternative to the subcontractors.
 
@@ -33,9 +33,9 @@ This ensured a good separation of concerns, and healthy software growth.
 
 > See the [contributing guidelines](https://gitlab.com/StaR-Elec/OpenStarApd/-/blob/498a3cb963c1bb2615c4989c94f5f608b47beefb/CONTRIBUTING.md#architecture) to learn more about the architecure.
 
-#### Decisions and trade-offs
+### Decisions and trade-offs
 
-##### Maximum portability
+#### Maximum portability
 
 One of the main challenges of the project was its required **portability**. Because of the large user base (hundreds of companies), it was impossible to take into account all possible user environments, subcontractors' infrastructure configuration (firewall, proxies, software installation restrictions, etc.), and other unforeseen constraints.
 
@@ -47,7 +47,7 @@ Thus, it lead to a very clear contraint: **no external dependencies**.
 2. For the database: **no complex architecture** (forget about MySQL, PostgreSQL, or SQL Server), use a file-based storage (such as [SQLite](https://sqlite.org/)).
 3. For the network: **avoid network interactions**, bundle necessary files with the plugin as much as possible.
 
-##### Data denormalization
+#### Data denormalization
 
 The data model is based on the [INSPIRE European Directive](https://inspire.ec.europa.eu/) logical data model which is **highly normalized**.
 
@@ -55,7 +55,7 @@ One issue we were facing was that the user had to draw geospatial entities sever
 
 This means that we had to **denormalize** the physical data model to improve the UX, for instance: merge the *Cable* and part of the *Conduit* tables to allow the user to define two entities in a single draw.
 
-##### Performance
+#### Performance
 
 Performance-wise, some elements -could- lead to a very sluggish experience:
 
@@ -63,9 +63,9 @@ Performance-wise, some elements -could- lead to a very sluggish experience:
 - **SQL views** could become issues in the long run, a known optimization is to turn them to **materialized views**.
 - **Very large datasets**, this is something I wish I had tested more.
 
-#### Development practices
+### Development practices
 
-##### Code quality
+#### Code quality
 
 To ensure good code quality, I used the current (as of 2025) **best practices for Python**:
 
@@ -76,7 +76,7 @@ To ensure good code quality, I used the current (as of 2025) **best practices fo
 
 I also wrote detailed [contributing guidelines](https://gitlab.com/StaR-Elec/OpenStarApd/-/blob/498a3cb963c1bb2615c4989c94f5f608b47beefb/CONTRIBUTING.md) to ensure other developers hold the same code standards once I'm no longer on the project. This contains best practices such as [semantic versioning](https://semver.org/) or [git conventional commit](https://www.conventionalcommits.org/).
 
-##### Continuous integration & delivery (CI/CD)
+#### Continuous integration & delivery (CI/CD)
 
 Because of the **uncertain roadmap** and **limited budget** to develop the tool, one of my main goal was to **put a MVP quickly in the hands of the user**.
 
@@ -85,7 +85,7 @@ I used **[Gitlab CI/CD](https://docs.gitlab.com/ci/), [Docker](https://www.docke
 - Implement a robust CI/CD pipeline to **automate package build and distribution**,
 - Develop multiple pipelines to **automate routine development tasks** (e.g.: database file creation, QGIS project template creation, debugging)
 
-##### AI-assisted development
+#### AI-assisted development
 
 At the end of September 2025, Anthropic released *Claude Code 2.0*. I started the projet in October 2025, but I didn't use it.
 
@@ -106,20 +106,20 @@ I had to dig to find as few well-crafted projects.  Unfortunately, the AI is no 
 
 I seldom used AI (Claude and Gemini), and **relied much more on documentation**, which were sometimes obscure websites of outdated APIs (hello PyQt 5).
 
-##### Geospatial APIs
+#### Geospatial APIs
 
 Interacting with geographic data requires specialized tools:
 
 - Software-wise: I used [GDAL/OGR](https://gdal.org/) and the [QGIS API](https://qgis.org/pyqgis/master/).
 - Data-wise, I used the [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index) (similar to PostGIS for PostgreSQL), and the [GeoPackage](https://www.geopackage.org/) extensions.
 
-### [Denote Paperless](https://codeberg.org/matthieumuller/denote-paperless) (Feb. 2026)
+## [Denote Paperless](https://codeberg.org/matthieumuller/denote-paperless) (Feb. 2026)
 
 > Open-source personal project  
 > Role: Author  
 > Domain: Document management  
 
-#### Overview
+### Overview
 
 An Emacs package to **rename and manage your documents** (bills, letters, taxes, etc.) based on a predictable file-naming scheme.
 
@@ -129,11 +129,11 @@ This package is officially documented in the [Denote documentation](https://prot
 
 To learn more, read the package’s documentation: https://codeberg.org/matthieumuller/denote-paperless
 
-#### Architecture
+### Architecture
 
 Since the project is in Lisp, it is based solely on **functional programming**.
 
-#### Features
+### Features
 
 - Prompt the user for the components of a file name
 - Rename a single or multiple files (in bulk or in sequence)
@@ -141,12 +141,12 @@ Since the project is in Lisp, it is based solely on **functional programming**.
 - Auto-increment archive serial number when prompting the user
 - Hunt down duplicate fields
 
-#### Tech stack
+### Tech stack
 
 - [Emacs](https://www.gnu.org/software/emacs/) [Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp)
 - Based on the [Denote](https://github.com/protesilaos/denote) package
 
-## Where to find me?
+# Where to find me?
 
 - [Codeberg](https://codeberg.org/matthieumuller)
 - [GitHub](https://github.com/matthieumuller)
