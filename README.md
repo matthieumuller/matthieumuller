@@ -11,6 +11,8 @@ Here are my most recent open source projects:
 > Domain: Energy, Electricity  
 > Client: [Enedis](https://www.enedis.fr/)  
 
+[![Watch a demo](./assets/demo-thumbnail.png)](https://youtu.be/mdIo0pcDE2M)
+
 ### Overview
 
 In october 2025, Enedis, the biggest electricity distributor in France, needed a tool for subcontractors and its own engineers.
